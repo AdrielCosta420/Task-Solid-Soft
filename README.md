@@ -45,11 +45,3 @@ The counter is incremented in the incrementClickCount function. This function al
 The background color is changed in the changeBackgroundColor function. This function generates two random colors and sets them as the background color.
 
 The reset button is implemented in the build method of the HomeScreen widget. It is only visible when the user reaches 15 taps.
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
