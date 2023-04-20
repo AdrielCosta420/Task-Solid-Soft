@@ -17,11 +17,41 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    colors = [
-      const Color.fromRGBO(47, 10, 155, 1),
-      const Color.fromRGBO(79, 51, 150, 1),
-    ];
+    changeBackgroundColor();
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        changeBackgroundColor();
+        incrementClickCount();
+      },
+      child: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: colors,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Center(
+            child: Text(
+              'Hello There',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: fontWeight,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  
 
   void incrementClickCount() {
     setState(() {
@@ -107,36 +137,5 @@ class _HomeScreenState extends State<HomeScreen> {
       colors = [firstColor, secondColor];
       fontWeight = randomFontWeight;
     });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        changeBackgroundColor();
-        incrementClickCount();
-      },
-      child: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: colors,
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-          child: Center(
-            child: Text(
-              'Hello There',
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: fontWeight,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }
