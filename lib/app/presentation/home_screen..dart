@@ -1,6 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,13 +9,10 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
- {
-  //late Color backgroundColor;
+class _HomeScreenState extends State<HomeScreen> {
   late List<Color> colors;
   FontWeight fontWeight = FontWeight.bold;
   int clickCount = 0;
-
 
   @override
   void initState() {
@@ -26,10 +21,7 @@ class _HomeScreenState extends State<HomeScreen>
       const Color.fromRGBO(47, 10, 155, 1),
       const Color.fromRGBO(79, 51, 150, 1),
     ];
-   
-    // backgroundColor = Colors.white;
   }
-
 
   void incrementClickCount() {
     setState(() {
@@ -37,34 +29,61 @@ class _HomeScreenState extends State<HomeScreen>
     });
     if (clickCount == 5) {
       ScaffoldMessenger.of(context).showSnackBar(
-      const  SnackBar(
-        
+        const SnackBar(
           behavior: SnackBarBehavior.floating,
           backgroundColor: Colors.black,
-          duration: Duration(seconds: 3),
+          duration: Duration(seconds: 2),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10))),
           content: Text(
-            '5x clicado, continue...',
+            '5x clicked, continue...',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
       );
-    } if(clickCount == 10) {
+    }
+    if (clickCount == 10) {
       ScaffoldMessenger.of(context).showSnackBar(
-      const  SnackBar(
-        
+        const SnackBar(
           behavior: SnackBarBehavior.floating,
           backgroundColor: Colors.black,
-          duration: Duration(seconds: 3),
+          duration: Duration(seconds: 2),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10))),
           content: Text(
-            '10x clicado, quase lá...',
+            '10x clicked, almost there...',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
       );
+    }
+    if (clickCount == 15) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              icon: const Icon(Icons.verified),
+              title: const Text("Congratulations!"),
+              content: const Text("You've come this far!"),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      clickCount = 0;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("Reset"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("Close"),
+                ),
+              ],
+            );
+          });
     }
   }
 
@@ -88,13 +107,6 @@ class _HomeScreenState extends State<HomeScreen>
       colors = [firstColor, secondColor];
       fontWeight = randomFontWeight;
     });
-    //  final random = Random();
-    // final red = random.nextInt(255);
-    // final green = random.nextInt(255);
-    // final blue = random.nextInt(255);
-    // setState(() {
-    //   backgroundColor = Color.fromRGBO(red, green, blue, 1);
-    // });
   }
 
   @override
